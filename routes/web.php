@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/home/', fn () => view('home'));
+Route::get('/cart', [CartController::class, 'index']);
