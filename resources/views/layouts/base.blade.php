@@ -39,13 +39,11 @@
 
         // Ajax リクエストが実行されたとき
         document.addEventListener('htmx:afterRequest', (e) => {
-            const shouldUpdateTable = e.target.id === 'delete';
-            console.log(e.target.id)
+            const shouldUpdateTable = e.target.id === 'delete' || e.target.id === 'addItem';
 
             if (shouldUpdateTable === true) {
                 const xhr = e.detail.xhr;
                 const status = xhr.getResponseHeader('X-Response-Status');
-            console.log(status)
 
                 if (status === 'success') {
                     htmx.trigger('#cart', 'reload'); // カートを更新
