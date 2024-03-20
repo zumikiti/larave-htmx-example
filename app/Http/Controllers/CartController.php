@@ -24,6 +24,19 @@ class CartController extends Controller
         ]);
     }
 
+    public function update()
+    {
+        $itemId = request()->get('item_id');
+        $count = request()->get('count', 1);
+
+        // 商品のカート追加処理実装
+
+        return response('', 200)
+            ->withHeaders([
+                'X-Response-Status' => 'success',
+            ]);
+    }
+
     public function destroy()
     {
         // 削除処理をここに書く

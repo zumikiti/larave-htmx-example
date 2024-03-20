@@ -9,4 +9,5 @@ Route::get('/', fn () => view('home'));
 Route::get('/items', [ItemController::class, 'index']);
 
 Route::get('/cart', [CartController::class, 'index']);
+Route::post('/cart', [CartController::class, 'update']);
 Route::delete('/cart/{id}', [CartController::class, 'destroy']);
