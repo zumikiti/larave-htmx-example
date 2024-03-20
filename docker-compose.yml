@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    platform: linux/amd64 # M1チップ対応のため追記
+    image: thecodingmachine/php:8.3-v4-apache-node20
+    ports:
+      - '${APP_PORT:-8080}:80'
+      # - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+    environment:
+      PHP_EXTENSIONS: bcmath gd intl pdo_pgsql pgsql
+      PHP_INI_MEMORY_LIMIT: 512M
+      PHP_INI_DATE__TIMEZONE: Asia/Tokyo
+      PHP_INI_MBSTRING__LANGUAGE: Japanese
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+      VIRTUAL_HOST: 'laravel-htmx.local'
+    volumes:
+      - '.:/var/www/html'
+    networks:
+      - webdev
+
+networks:
+  webdev:
+    external: true
+    name: webdev
