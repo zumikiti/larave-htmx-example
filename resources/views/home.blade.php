@@ -8,6 +8,7 @@
             home
         </div>
         <div
+            id="cart"
             hx-get="/cart"
             hx-trigger="load"
             class="md:w-48 md:h-auto"
