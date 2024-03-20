@@ -4,8 +4,11 @@
 
 @section('main')
     <div class="md:flex">
-        <div class="mx-auto">
-            home
+        <div
+            class="mx-auto"
+            hx-get="/items"
+            hx-trigger="load"
+            >
         </div>
         <div
             id="cart"
