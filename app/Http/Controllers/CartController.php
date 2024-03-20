@@ -11,14 +11,27 @@ class CartController extends Controller
         return view('cart', [
             'items' => [
                 [
+                    'id' => 1,
                     'name' => 'キャンディー',
                     'price' => 100,
                 ],
                 [
+                    'id' => 2,
                     'name' => 'プリン',
                     'price' => 300,
                 ],
             ],
         ]);
+    }
+
+    public function destroy()
+    {
+        // 削除処理をここに書く
+
+        // 成功時はヘッダーにサクセスいれる
+        return response('', 204)
+            ->withHeaders([
+                'X-Response-Status' => 'success',
+            ]);
     }
 }
