@@ -31,25 +31,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-        document.addEventListener('htmx:configRequest', function(event) {
-            event.detail.headers['X-CSRF-TOKEN'] = '{{ csrf_token() }}'; // CSRF トークンをセット
-        });
-
-        // Ajax リクエストが実行されたとき
-        document.addEventListener('htmx:afterRequest', (e) => {
-            const shouldUpdateTable = e.target.id === 'delete' || e.target.id === 'addItem';
-
-            if (shouldUpdateTable === true) {
-                const xhr = e.detail.xhr;
-                const status = xhr.getResponseHeader('X-Response-Status');
-
-                if (status === 'success') {
-                    htmx.trigger('#cart', 'reload'); // カートを更新
-                }
-            }
-        });
-        </script>
     </body>
 </html>

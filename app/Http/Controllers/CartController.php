@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\View\View;
 
 class CartController extends Controller
 {
+    private string $key = 'cart';
+
     public function index(): View
     {
+        $data = session()->exists($this->key)
+            ? session()->get($this->key, [])
+            : [];
+
         return view('cart', [
-            'items' => [
-                [
-                    'id' => 1,
-                    'name' => 'キャンディー',
-                    'price' => 100,
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'プリン',
-                    'price' => 300,
-                ],
-            ],
+            'items' => $data,
         ]);
     }
 
@@ -28,23 +24,25 @@ class CartController extends Controller
     {
         $itemId = request()->get('item_id');
         $count = request()->get('count', 1);
+        $item = Item::find($itemId);
 
         // 商品のカート追加処理実装
+        session()->push("{$this->key}.{$itemId}", [
+            'id' => $itemId,
+            'count' => $count,
+            'price' => $item->price,
+            'name' => $item->name,
+        ]);
 
-        return response('', 200)
-            ->withHeaders([
-                'X-Response-Status' => 'success',
-            ]);
+        return $this->index();
     }
 
     public function destroy()
     {
         // 削除処理をここに書く
+        $itemId = request()->get('item_id');
+        session()->pull("{$this->key}.{$itemId}");
 
-        // 成功時はヘッダーにサクセスいれる
-        return response('', 204)
-            ->withHeaders([
-                'X-Response-Status' => 'success',
-            ]);
+        return 'deleted.';
     }
 }
