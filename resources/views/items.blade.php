@@ -26,20 +26,17 @@
                 価格： {{ $item['price'] }} 円
             </div>
 
-            <div hidden id="dummy-item-{{$item['id']}}"></div>
-
             <form
                 hx-post="/cart"
-                hx-target="#dummy-item-{{$item['id']}}"
-                hx-trigger="submit"
-                id="addItem"
+                hx-target="#cart"
                 >
+                @csrf
                 <input type="text" name="item_id" hidden value="{{ $item['id'] }}" />
-                <input
+                <button
                     type="submit"
-                    class="bg-green-600 hover:bg-green-400 text-white p-2 mt-2 rounded-lg"
-                    value="カートに追加"
-                    >
+                    class="bg-green-600 hover:bg-green-400 text-white p-2 mt-2 rounded-lg">
+                    カートに追加
+                </button>
             </form>
         </div>
     @endforeach

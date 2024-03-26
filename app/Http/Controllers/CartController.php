@@ -11,11 +11,9 @@ class CartController extends Controller
 
     public function index(): View
     {
-        // session()->flash($this->key, []);
         $data = session()->exists($this->key)
             ? session()->get($this->key, [])
             : [];
-        // dd($data);
 
         return view('cart', [
             'items' => $data,
@@ -36,10 +34,7 @@ class CartController extends Controller
             'name' => $item->name,
         ]);
 
-        return response('', 200)
-            ->withHeaders([
-                'X-Response-Status' => 'success',
-            ]);
+        return $this->index();
     }
 
     public function destroy()
@@ -48,10 +43,6 @@ class CartController extends Controller
         $itemId = request()->get('item_id');
         session()->pull("{$this->key}.{$itemId}");
 
-        // 成功時はヘッダーにサクセスいれる
-        return response('', 204)
-            ->withHeaders([
-                'X-Response-Status' => 'success',
-            ]);
+        return 'deleted.';
     }
 }
