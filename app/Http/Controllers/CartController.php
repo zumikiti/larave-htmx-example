@@ -26,13 +26,26 @@ class CartController extends Controller
         $count = request()->get('count', 1);
         $item = Item::find($itemId);
 
-        // 商品のカート追加処理実装
-        session()->push("{$this->key}.{$itemId}", [
-            'id' => $itemId,
-            'count' => $count,
-            'price' => $item->price,
-            'name' => $item->name,
-        ]);
+        $key = "{$this->key}.{$itemId}";
+
+        if (session()->exists($key)) {
+            $cartItem = session()->pull($key)[0];
+
+            session()->push($key, [
+                'id' => $itemId,
+                'count' => $cartItem['count'] + $count,
+                'price' => $item->price,
+                'name' => $item->name,
+            ]);
+        } else {
+            // 商品のカート追加処理実装
+            session()->push($key, [
+                'id' => $itemId,
+                'count' => $count,
+                'price' => $item->price,
+                'name' => $item->name,
+            ]);
+        }
 
         return $this->index();
     }

@@ -10,6 +10,8 @@
         <div class="w-auto rounded-xl m-3 p-3 border-2 border-sky-500 cart-item">
             <div>商品名：{{ $item[0]['name'] }}</div>
             <div>金額：{{ $item[0]['price'] }}</div>
+            <div>count：{{ $item[0]['count'] }}</div>
+            <div>total：{{ $item[0]['price'] * $item[0]['count'] }}</div>
             <form>
                 @csrf
                 <button
