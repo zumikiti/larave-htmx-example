@@ -5,7 +5,14 @@
 @section('main')
     <div class="md:flex">
         <div
-            class="mx-auto"
+            id="cart"
+            hx-get="/cart"
+            hx-trigger="load"
+            class="w-auto md:hidden"
+            >
+        </div>
+        <div
+            class="w-auto md:w-3/4"
             hx-get="/items"
             hx-trigger="load"
             >
@@ -14,7 +21,7 @@
             id="cart"
             hx-get="/cart"
             hx-trigger="load"
-            class="md:w-48 md:h-auto"
+            class="hidden md:block md:w-1/4"
             >
         </div>
     </div>
