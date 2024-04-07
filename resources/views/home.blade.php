@@ -14,7 +14,6 @@
             id="cart"
             hx-get="/cart"
             hx-trigger="load"
-            class="w-auto hidden md:block"
             >
         </div>
     </div>

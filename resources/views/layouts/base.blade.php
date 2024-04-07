@@ -23,7 +23,7 @@
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     @include('partials.header')
 
-                    <main class="mt-6">
+                    <main class="mt-6 relative">
                         @yield('main')
                     </main>
 
