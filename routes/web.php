@@ -11,3 +11,4 @@ Route::get('/items', [ItemController::class, 'index']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart', [CartController::class, 'update']);
 Route::delete('/cart', [CartController::class, 'destroy']);
+Route::get('/cart/sidemenu', [CartController::class, 'indexForSidemenu']);
