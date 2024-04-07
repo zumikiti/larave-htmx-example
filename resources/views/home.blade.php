@@ -12,7 +12,7 @@
         </div>
         <div
             id="cart"
-            hx-get="/cart"
+            hx-get="/cart/sidemenu"
             hx-trigger="load"
             >
         </div>

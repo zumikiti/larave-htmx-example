@@ -58,4 +58,15 @@ class CartController extends Controller
 
         return 'deleted.';
     }
+
+    public function indexForSidemenu(): View
+    {
+        $data = session()->exists($this->key)
+            ? session()->get($this->key, [])
+            : [];
+
+        return view('components.sidemenu-cart', [
+            'items' => $data,
+        ]);
+    }
 }
