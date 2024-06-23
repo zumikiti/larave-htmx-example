@@ -1,53 +1,56 @@
-## 何か
-htmx を試したかったので、htmx と laravel を使って CRUD 機能を実装してみた。
+## About
 
-## 技術スタック 
-- laravel 11
+I wanted to try out htmx, so I implemented CRUD functionality using htmx and Laravel.
+
+## Tech Stack
+- Laravel 11
 - htmx
-- tailwindow
+- TailwindCSS
 
-## やれること
-- 商品を選択してカートに追加
-- 商品の個数を追加
-- カートから商品の削除
+## Features
+- Select products and add them to the cart
+- Increase the quantity of products in the cart
+- Remove products from the cart
 
-## スクショ
-イメージ
+## Screenshot
+|PC layout | SP layout |
+|---|--|
+|<img src="https://github.com/zumikiti/laravel-htmx-example/blob/images/images/demo-pc.png?raw=true" height="500px"> | <img src="https://github.com/zumikiti/laravel-htmx-example/blob/images/images/demo-sp.png?raw=true" height="500px"> |
 
-## ローカル環境構築
+## Local Environment Setup
 
-### 1. DB Redis の環境構築
-DB と redis は、[webdev](https://github.com/zumikiti/webdev) を使用している
+### 1. Setting up DB and Redis
+For DB and Redis, I used [webdev](https://github.com/zumikiti/webdev).
 
 ```sh
-git clone thub.com:zumikiti/webdev.git
+git clone github.com:zumikiti/webdev.git
 cd ./webdev
 docker-compose up -d pgsql redis
 ```
 
-DB 生成
+Creating the DB
 
 ```sh
 docker-compose exec pgsql bash
-pgsql -usail -password
+psql -U sail -W
 ```
 
 ```sql
 create database laravelhtmx;
 ```
 
-### 2. アプリ側環境構築 
+### 2. Setting up the application
 ```sh
-git clone git@github.com:zumikiti/larave-htmx-example.git
-cd ./larave-htmx-example
+git clone git@github.com:zumikiti/laravel-htmx-example.git
+cd ./laravel-htmx-example
 cp .env.example .env
 
 docker-compose up -d
 docker-compose exec app bash
-composer i
+composer install
 php artisan migrate --seed
 ```
 
-以下にアクセスして表示されたらOK
+If you can see the page at the following URL, everything is set up correctly:
 
 http://localhost:8088
