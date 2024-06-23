@@ -47,7 +47,7 @@ class CartController extends Controller
             ]);
         }
 
-        return $this->index();
+        return $this->indexForSidemenu();
     }
 
     public function destroy()
